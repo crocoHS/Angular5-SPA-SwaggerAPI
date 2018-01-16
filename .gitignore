@@ -259,3 +259,10 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Todo.App/wwwroot/dist/vendor.js
+/Todo.App/wwwroot/dist/vendor-manifest.json
+/Todo.App/wwwroot/dist/main-client.js.map
+/Todo.App/wwwroot/dist/main-client.js
+/Todo.App/ClientApp/dist/vendor.js
+/Todo.App/ClientApp/dist/vendor-manifest.json
+/Todo.App/ClientApp/dist/main-server.js
