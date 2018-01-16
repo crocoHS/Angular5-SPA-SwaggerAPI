@@ -266,3 +266,4 @@ __pycache__/
 /Todo.App/ClientApp/dist/vendor.js
 /Todo.App/ClientApp/dist/vendor-manifest.json
 /Todo.App/ClientApp/dist/main-server.js
+/Todo.App/wwwroot/dist/vendor.css
