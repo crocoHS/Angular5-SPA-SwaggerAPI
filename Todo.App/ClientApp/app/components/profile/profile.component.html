@@ -1,0 +1,15 @@
+<div class="card card-container">
+    <div>
+        <img id="profile-img" alt="avatar" class="profile-img-card" src="{{profile?.picture}}" />
+        <p id="profile-name" class="profile-name-card">{{profile?.name}}</p>
+    </div>
+    <div class="form-group">
+        <label><i class="glyphicon glyphicon-paperclip"></i> Theme</label>
+        <select class="form-control theme" id="theme" name="theme" [(ngModel)]="theme">
+            <option *ngFor="let theme of config.THEMES" [ngValue]="theme">
+                {{ theme.display }}
+            </option>
+        </select>
+    </div>
+    <pre class="full-profile">{{ profile | json }}</pre>
+</div>

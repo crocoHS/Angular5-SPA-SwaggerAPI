@@ -1,0 +1,46 @@
+<h1>Todo List</h1>
+
+<p>This component demonstrates fetching todo items from the server.</p>
+
+<p *ngIf="!todo"><em>Loading...</em></p>
+
+<div class="container-fluid">
+    <form #myForm="ngForm">
+        <div class="form-group">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <input name="newTodo" type="text" [(ngModel)]="newTodo" class="form-control" placeholder="Enter Todo item..." />
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+                <button class="btn btn-success" (click)="newTodoItem()" [disabled]="newTodo && newTodo.length ? '' : 'disabled'">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<table *ngIf="todo" class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Is Completed?</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todoItem of todo">
+            <td>{{ todoItem.id }}</td>
+            <td>
+                <span *ngIf="!todoItem.isComplete">{{ todoItem.name }}</span>
+                <span *ngIf="todoItem.isComplete" style="text-decoration: line-through">{{ todoItem.name }}</span>
+            </td>
+            <td>
+                <mat-checkbox name="isComplete" [(ngModel)]="todoItem.isComplete" (click)="completeClicked(todoItem)">
+                    {{ todoItem.isComplete ? 'Yes' : 'No' }}
+                </mat-checkbox>
+            </td>
+            <td>
+                <button [disabled]="!todoItem.isComplete" (click)="deleteItem(todoItem.id)" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

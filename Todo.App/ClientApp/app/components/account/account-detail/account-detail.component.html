@@ -1,0 +1,6 @@
+﻿<div style="margin-top:40px">
+    <div class="panel panel-default">
+        <account-summary *ngIf="accountDetail" [customerId]="accountDetail.customerId" [account]="accountDetail.accountSummary"></account-summary>
+        <account-activity *ngIf="accountDetail" [customerId]="accountDetail.customerId" [accountTransactions]="accountDetail.accountTransactions"></account-activity>
+    </div>
+</div>

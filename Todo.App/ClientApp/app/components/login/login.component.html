@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <div *ngIf="f.submitted && !email.valid">
+            <span class="text-danger align-middle">
+                <i class="fa fa-close"></i> Email address is required
+            </span>
+        </div>
+        <div *ngIf="f.submitted && !password.valid">
+            <span class="text-danger align-middle">
+                <i class="fa fa-close"></i> Password is required
+            </span>
+        </div>
+        <form class="form-signin" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="email" class="form-control" name="email" placeholder="Email address"
+                   [(ngModel)]="user.email" #email="ngModel" [pattern]="EMAIL_REGEXP" required autofocus />
+            <input type="password" class="form-control" name="password" placeholder="Password"
+                   [(ngModel)]="user.password" #password="ngModel" required />
+            <mat-checkbox name="rememberMe" [(ngModel)]="user.rememberMe">Remember me</mat-checkbox>
+            <button class="btn btn-lg btn-primary btn-block btn-signin">
+                <span class='glyphicon glyphicon-log-in'></span> Sign In
+            </button>
+        </form>
+        <a [routerLink]="['/']" class="forgot-password" title="P@ssw0rd">
+            Forgot your password?
+        </a>
+        <img *ngIf="loading" src="../../../../wwwroot/dist/assets/loading.gif" id="loading" alt="loading" />
+        <hr />
+        <button (click)="loginAuth0()" class="btn btn-lg btn-primary btn-block btn-signin">
+            <span class='glyphicon glyphicon-log-in'></span> Auth0
+        </button>
+    </div>
+</div>

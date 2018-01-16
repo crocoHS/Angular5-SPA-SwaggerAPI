@@ -1,0 +1,21 @@
+<ng-template [ngIf]="authService.isAuthenticated()" [ngIfElse]="nologin">
+    <div class="welcome">
+        <p>
+            <b>Welcome</b> {{email}}
+            <a style="text-decoration:none;" [routerLink]="['/login']">
+                <span id="log-out-icon" class="glyphicon glyphicon-log-out"></span>
+                <span class="sign-in">Sign Out</span>
+            </a>
+        </p>
+    </div>
+</ng-template>
+<ng-template #nologin>
+    <div class="welcome">
+        <p>
+            <a style="text-decoration:none;" [routerLink]="['/login']">
+                <span class="glyphicon glyphicon-log-in"></span>
+                <span class="sign-in">Sign In</span>
+            </a>
+        </p>
+    </div>
+</ng-template>

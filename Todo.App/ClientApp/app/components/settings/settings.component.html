@@ -1,0 +1,24 @@
+﻿<h1>Settings</h1>
+<p>Only users who have a <code>scope</code> of <code>add:technology</code> in their <code>access_token</code> and has an admin role, can see this area.</p>
+
+<div class="container-fluid">
+    <form #myForm="ngForm">
+        <div class="form-group">
+            <label for="technology">Technologies</label>
+            <select class="form-control" id="technologyList" size="10" name="technologyList" #technologyToDelete (change)="isTechnolgySelected = true">
+                <option *ngFor="let technology of technologyList" [ngValue]="technology">
+                    {{ technology }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="technology">Technology Name</label>
+            <input id="technology" type="text" class="form-control" required placeholder="Technology name"
+                   [(ngModel)]="technology.technologyName" name="technology" #technologyName="ngModel">
+        </div>
+        <div class="form-group">
+            <button [disabled]="!myForm.form.valid" class="btn btn-success" (click)="addTechnology()">Add</button>
+            <button [disabled]="!isTechnolgySelected" class="btn btn-danger" (click)="deleteTechnology(technologyToDelete.value)">Delete</button>
+        </div>
+    </form>
+</div>

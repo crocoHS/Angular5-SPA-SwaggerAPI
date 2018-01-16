@@ -1,0 +1,98 @@
+<div class='main-nav'>
+    <div class='navbar navbar-inverse'>
+        <div class='navbar-header'>
+            <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
+                <span class='sr-only'>Toggle navigation</span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+                <span class='icon-bar'></span>
+            </button>
+            <a class='navbar-brand' [routerLink]="['/home']">Todo App</a>
+        </div>
+        <div class='clearfix'></div>
+        <div class='navbar-collapse collapse'>
+            <ul class='nav navbar-nav'>
+                <ng-template [ngIf]="auth.isAuthenticated()" [ngIfElse]="nologin">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
+                            {{ auth.getUsername() }}
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <div class="navbar-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <a [routerLink]="['/profile']" class="btn btn-primary btn-sm active">
+                                                <span class='glyphicon glyphicon-user'></span> Profile
+                                            </a>
+                                            <div class="divider"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="navbar-footer">
+                                    <div class="navbar-footer-content">
+                                        <div class="row">
+                                            <div class="col-md-12 foot_style">
+                                                <a (click)="auth.logout()" class="btn btn-default btn-sm warning">
+                                                    <span class='glyphicon glyphicon-log-out'></span> Sign Out
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ng-template>
+                <ng-template #nologin>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/login']" style="cursor:pointer;">
+                            <span class='glyphicon glyphicon-log-in'></span> Sign In
+                        </a>
+                    </li>
+                </ng-template>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/home']">
+                        <span class='glyphicon glyphicon-home'></span> Home
+                    </a>
+                </li>
+                <li *ngIf="auth.isAuthenticated()" [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/profile']">
+                        <span class='glyphicon glyphicon-user'></span> Profile
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/fetch-data']">
+                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/crypto']">
+                        <span class='glyphicon glyphicon-wrench'></span> Cryptography
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/customer']">
+                        <span class='glyphicon glyphicon-education'></span> Customers
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/todo']">
+                        <span class='glyphicon glyphicon-th-list'></span> Todo List
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/email']">
+                        <span class='glyphicon glyphicon-envelope'></span> Contact
+                    </a>
+                </li>
+                <li *ngIf="auth.isAuthenticated() && auth.isAdmin()" [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/settings']">
+                        <span class='glyphicon glyphicon-cog'></span> Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

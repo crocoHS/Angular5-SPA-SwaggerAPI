@@ -1,0 +1,33 @@
+﻿<div class="row">
+    <div class="col-md-6 col-sm-6 col-xs-6 ">
+        <h1>Account Summary <small>January 3rd 2017</small></h1>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+        <h1><button class="btn btn-warning" [routerLink]="['/customer']">Back to Customers</button></h1>
+    </div>
+</div>
+
+<div class="panel panel-default panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Cash Accounts</h3>
+    </div>
+    <div class="panel-body" >
+        <div class="mb-5">
+            <button class="btn btn-success" (click)="addAccount(0)">Add</button>
+        </div>
+        <account-summary *ngFor="let account of cashAccounts" [customerId]="customerId" [account]="account" (onDelete)="getAccountSummary($event)"></account-summary>
+        <div *ngIf="!hasCashAccounts">No Cash Accounts</div>
+    </div>
+</div>
+<div class="panel panel-default panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Credit Accounts</h3>
+    </div>
+    <div class="panel-body">
+        <div class="mb-5">
+            <button class="btn btn-success" (click)="addAccount(2)">Add</button>
+        </div>
+        <account-summary *ngFor="let account of creditAccounts" [customerId]="customerId" [account]="account" (onDelete)="getAccountSummary($event)"></account-summary>
+        <div *ngIf="!hasCreditAccounts">No Credit Accounts</div>
+    </div>
+</div>

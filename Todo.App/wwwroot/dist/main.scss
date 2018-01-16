@@ -1,0 +1,43 @@
+﻿@import 'settings.scss';
+@import 'toastr.css';
+
+body {
+    background-color: $ng-body-background;
+}
+
+.h1, h1 {
+    font-size: 26px;
+}
+
+.btn-success {
+    min-width: 75px;
+}
+
+input.ng-valid[required], .ng-valid.required {
+    border-left: 5px solid $ng-valid-green;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid $ng-invalid-red;
+}
+
+.mb-5 {
+    margin-bottom: 5px;
+}
+
+.tab-pane > div {
+    margin: 5px;
+    padding: 5px;
+}
+
+.nav-tabs > li > a {
+    color: #555;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: white;
+}
+
+.mat-checkbox-layout .mat-checkbox-label {
+    font-weight: 400;
+}

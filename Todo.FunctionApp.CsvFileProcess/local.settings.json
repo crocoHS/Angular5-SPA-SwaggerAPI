@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "ConnectionStrings": {
+    "TodoContext": "Server=localhost;Database=Core2App;Trusted_Connection=True;"
+  },
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsDashboard": "UseDevelopmentStorage=true"
+  }
+}

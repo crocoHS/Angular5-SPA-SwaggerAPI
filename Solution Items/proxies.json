@@ -1,0 +1,36 @@
+﻿{
+  "$schema": "http://json.schemastore.org/proxies",
+  "proxies": {
+    "Todo Collection Redirect": {
+      "matchCondition": {
+        "route": "/api/todo",
+        "methods": [
+          "GET",
+          "OPTIONS"
+        ]
+      },
+      "backendUri": "https://todolist-api.azurewebsites.net/api/todo"
+    },
+    "Todo Item Redirect": {
+      "matchCondition": {
+        "route": "/api/todo/{id}",
+        "methods": [
+          "GET",
+          "DELETE",
+          "PUT",
+          "OPTIONS"
+        ]
+      },
+      "backendUri": "https://todolist-api.azurewebsites.net/api/todo/{id}"
+    },
+    "Post Todo Redirect": {
+      "matchCondition": {
+        "route": "/api/todo",
+        "methods": [
+          "POST"
+        ]
+      },
+      "backendUri": "https://sollyfunctionapp.azurewebsites.net/api/PostTodo"
+    }
+  }
+}

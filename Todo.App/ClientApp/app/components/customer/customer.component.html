@@ -1,0 +1,61 @@
+﻿<h1>Customer Details</h1>
+
+<div class="container-fluid">
+    <form #customerForm="ngForm">
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input id="firstName" type="text" class="form-control" required placeholder="First Name"
+                [(ngModel)]="customer.firstName" name="firstName" #firstName="ngModel">
+            <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">
+                First Name is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" type="text" class="form-control" required placeholder="Last Name"
+                [(ngModel)]="customer.lastName" name="lastName" #lastName="ngModel">
+            <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+                Last Name is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Email address</label>
+            <input id="email" type="email" class="form-control" required placeholder="name@example.com" 
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" [(ngModel)]="customer.email" name="email" #email="ngModel" />
+            <div *ngIf="email.errors">
+                <div *ngIf="email.errors.required && email.dirty" class="alert alert-danger">
+                    Email address is required
+                </div>
+                <div *ngIf="email.errors.pattern && email.touched" class="alert alert-danger">
+                    Email address must be valid
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Registration Date</label>
+            <input id="registrationDate" type="date" class="form-control" required
+                [(ngModel)]="customer.registrationDate" name="registrationDate" #registrationDate="ngModel" useValueAsDate>
+            <div [hidden]="registrationDate.valid || registrationDate.pristine" class="alert alert-danger">
+                Registration date is invalid
+            </div>
+        </div>
+        <div class="form-group">
+            <div><label for="gender">Gender</label></div>
+            <div *ngFor="let gender of config.GENDERS" style="display:inline-block; margin-right:5px;">
+                <input type="radio" name="gender" [(ngModel)]="customer.gender" [value]="gender.value" />
+                {{gender.display}}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="technology">Technologies</label>
+            <select class="form-control" id="technology" size="7" multiple [(ngModel)]="selectedTechnologies" name="technology">
+                <option *ngFor="let technology of technologyList" [ngValue]="technology">
+                    {{ technology }}
+                </option>
+            </select>
+        </div>
+        <button [disabled]="!customerForm.form.valid" class="btn btn-success" *ngIf="isNew" (click)="addCustomer()">Add</button>
+        <button [disabled]="!customerForm.form.valid" class="btn btn-success" *ngIf="!isNew" (click)="updateCustomer()">Update</button>
+        <button type="reset" class="btn btn-default" [routerLink]="['/customer']">Cancel</button>
+    </form>
+</div>

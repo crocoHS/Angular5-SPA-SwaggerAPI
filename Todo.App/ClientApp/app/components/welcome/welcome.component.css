@@ -1,0 +1,17 @@
+﻿.welcome {
+    margin: 10px 10px 0 0;
+    float: right;
+}
+
+.sign-in {
+    margin-left: 2px;
+}
+
+    .sign-in:hover {
+        text-decoration: underline;
+        cursor:pointer;
+    }
+
+#log-out-icon {
+    margin-left: 5px;
+}
