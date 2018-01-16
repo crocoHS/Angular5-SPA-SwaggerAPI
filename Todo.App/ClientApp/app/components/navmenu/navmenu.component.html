@@ -12,40 +12,7 @@
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
-                <ng-template [ngIf]="auth.isAuthenticated()" [ngIfElse]="nologin">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle text-right" data-toggle="dropdown">
-                            {{ auth.getUsername() }}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <div class="navbar-content">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <a [routerLink]="['/profile']" class="btn btn-primary btn-sm active">
-                                                <span class='glyphicon glyphicon-user'></span> Profile
-                                            </a>
-                                            <div class="divider"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="navbar-footer">
-                                    <div class="navbar-footer-content">
-                                        <div class="row">
-                                            <div class="col-md-12 foot_style">
-                                                <a (click)="auth.logout()" class="btn btn-default btn-sm warning">
-                                                    <span class='glyphicon glyphicon-log-out'></span> Sign Out
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                </ng-template>
-                <ng-template #nologin>
+                <ng-template [ngIf]="!auth.isAuthenticated()">
                     <li [routerLinkActive]="['link-active']">
                         <a [routerLink]="['/login']" style="cursor:pointer;">
                             <span class='glyphicon glyphicon-log-in'></span> Sign In
