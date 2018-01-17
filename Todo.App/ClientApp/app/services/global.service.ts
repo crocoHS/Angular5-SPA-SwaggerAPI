@@ -9,7 +9,6 @@ import { Consumer } from "../models/consumer.type";
 import { PlainText } from "../models/plain-text.type";
 import { WeatherForecast } from "../models/weather-forecast.type";
 import { EmailMessage } from "../models/email-message.type";
-import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable()
@@ -17,7 +16,6 @@ export class GlobalService {
     constructor(
         private http: HttpClient,
         private router: Router,
-        private toastr: ToastrService,
         public snackBar: MatSnackBar,
         @Inject('API_URL') private apiUrl: string,
         @Inject(APP_CONFIG) public config: IAppConfig) {

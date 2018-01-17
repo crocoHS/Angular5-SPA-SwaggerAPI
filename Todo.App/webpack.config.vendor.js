@@ -28,8 +28,6 @@ module.exports = (env) => {
                 '@angular/material',
                 '@angular/cdk',
                 '@angular/material/prebuilt-themes/deeppurple-amber.css',
-                'bootstrap',
-                'bootstrap/dist/css/bootstrap.css',
                 'es6-shim',
                 'es6-promise',
                 'event-source-polyfill',

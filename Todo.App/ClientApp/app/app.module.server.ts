@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ServerModule } from "@angular/platform-server";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from 'ngx-toastr';
@@ -19,6 +20,7 @@ import { sharedConfig } from "./app.module.shared";
     imports: [
         ServerModule,
         NoopAnimationsModule,
+        NgbModule.forRoot(),
         ToastrModule.forRoot({
             closeButton: true,
             positionClass: 'toast-top-right',

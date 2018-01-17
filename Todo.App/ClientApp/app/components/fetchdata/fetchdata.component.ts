@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GlobalService } from './../../services/global.service';
 import { Consumer } from './../../models/consumer.type';
 import { WeatherForecast } from './../../models/weather-forecast.type';
+import { NgbTabChangeEvent } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: "fetchdata",
@@ -14,9 +15,18 @@ export class FetchDataComponent implements OnInit {
     constructor(private service: GlobalService) { }
 
     ngOnInit(): void {
+        if (window == undefined) return; // avoid browser crash on page refresh
         this.getConsumersAsync();
-        this.getWeatherForecasts();
     }
+
+    public beforeChange($event: NgbTabChangeEvent) {
+        if ($event.nextId === 'tab-consumers') {
+            this.getConsumersAsync();
+        }
+        else {
+            this.getWeatherForecasts();
+        }
+    };
 
     getConsumersAsync() {
         this.service.getConsumersAsync()
