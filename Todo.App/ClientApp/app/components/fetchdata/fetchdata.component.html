@@ -6,34 +6,73 @@
         <ngb-tab id="tab-consumers" title="Consumers">
             <ng-template ngbTabContent>
                 <div>
-                    <div>
-                        <button class="btn btn-success" (click)="getConsumersAsync()">Refresh</button>
+                    <button class="btn btn-success" (click)="getConsumersAsync()">Refresh</button>
+                </div>
+                <div class="example-container mat-elevation-z8">
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter_consumers($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
                     </div>
-                    <div>
-                        <p *ngIf="!consumers"><em>Loading...</em></p>
-                        <table *ngIf="consumers" class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Date of Birth</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let consumer of consumers">
-                                    <td>{{ consumer.id }}</td>
-                                    <td>{{ consumer.name }}</td>
-                                    <td>{{ consumer.email }}</td>
-                                    <td>{{ consumer.phone }}</td>
-                                    <td>{{ consumer.dob | date}}</td>
-                                    <td>{{ consumer.salary | currency:"USD":"symbol":"1.2-2" }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <mat-table #table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                            <mat-cell *matCellDef="let consumer"> {{consumer.id}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let consumer"> {{consumer.name}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="dob">
+                            <mat-header-cell *matHeaderCellDef> Birthday </mat-header-cell>
+                            <mat-cell *matCellDef="let consumer"> {{consumer.dob | date}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="salary">
+                            <mat-header-cell *matHeaderCellDef> Salary </mat-header-cell>
+                            <mat-cell *matCellDef="let consumer"> {{ consumer.salary | currency:"USD":"symbol":"1.2-2" }} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                </div>
+            </ng-template>
+        </ngb-tab>
+        <ngb-tab id="tab-users" title="Users">
+            <ng-template ngbTabContent>
+                <div>
+                    <button class="btn btn-success" (click)="getRandomUsers()">Refresh</button>
+                </div>
+                <div class="example-container mat-elevation-z8">
+                    <div class="example-header">
+                        <mat-form-field>
+                            <input matInput (keyup)="applyFilter_users($event.target.value)" placeholder="Filter">
+                        </mat-form-field>
                     </div>
+                    <mat-table [dataSource]="dataSourcer" matSort>
+                        <ng-container matColumnDef="id">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="progress">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="color">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
+                            <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumn"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumn;">
+                        </mat-row>
+                    </mat-table>
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
             </ng-template>
         </ngb-tab>

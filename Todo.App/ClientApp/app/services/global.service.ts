@@ -8,6 +8,7 @@ import { APP_CONFIG } from '../components/app/app.config';
 import { Consumer } from "../models/consumer.type";
 import { PlainText } from "../models/plain-text.type";
 import { WeatherForecast } from "../models/weather-forecast.type";
+import { UserData } from '../models/user-data.type';
 import { EmailMessage } from "../models/email-message.type";
 import { MatSnackBar } from '@angular/material';
 
@@ -29,6 +30,19 @@ export class GlobalService {
 
     public getRandomDate(start: Date, end: Date): Date {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+    public createNewUser(id: number): UserData {
+        const name =
+            this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))] + ' ' +
+            this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))].charAt(0) + '.';
+
+        return {
+            id: id.toString(),
+            name: name,
+            progress: Math.round(Math.random() * 100).toString(),
+            color: this.config.COLORS[Math.round(Math.random() * (this.config.COLORS.length - 1))]
+        };
     }
 
     public getWeatherForecasts() {

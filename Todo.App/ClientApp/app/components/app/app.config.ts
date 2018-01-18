@@ -4,6 +4,8 @@ import { IAppConfig } from "../../models/app-config.type";
 
 export const APP_DI_CONFIG: IAppConfig = {
     MAIL4SOLLY: 'mail4solly@gmail.com',
+    COLORS: ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'],
+    NAMES: ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'],
     GENDERS: [
         { value: 'M', display: 'Male' },
         { value: 'F', display: 'Female' },
