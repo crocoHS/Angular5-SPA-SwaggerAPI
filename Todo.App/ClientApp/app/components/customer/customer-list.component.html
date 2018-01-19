@@ -10,7 +10,7 @@
             <div class="form-group">
                 <div class="col-md-3 col-sm-5 col-xs-5">
                     <select class="form-control" id="technology" name="technology" #technology (change)="searchCustomer(technology.value, searchString.value)">
-                        <option value="All">-- All Technologies --</option>
+                        <option value="All">-- All --</option>
                         <option *ngFor="let t of technologyList" [value]="t.technologyName" [text]="t.technologyName"></option>
                     </select>
                 </div>

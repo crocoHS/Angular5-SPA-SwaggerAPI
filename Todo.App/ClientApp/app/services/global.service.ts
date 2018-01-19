@@ -8,7 +8,6 @@ import { APP_CONFIG } from '../components/app/app.config';
 import { Consumer } from "../models/consumer.type";
 import { PlainText } from "../models/plain-text.type";
 import { WeatherForecast } from "../models/weather-forecast.type";
-import { UserData } from '../models/user-data.type';
 import { EmailMessage } from "../models/email-message.type";
 import { MatSnackBar } from '@angular/material';
 
@@ -32,16 +31,25 @@ export class GlobalService {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
 
-    public createNewUser(id: number): UserData {
-        const name =
-            this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))] + ' ' +
-            this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))].charAt(0) + '.';
+    public getRandomColor() {
+        return this.config.COLORS[Math.round(Math.random() * (this.config.COLORS.length - 1))];
+    }
 
+    public getRandomName() {
+        return `${this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))]} 
+                ${this.config.NAMES[Math.round(Math.random() * (this.config.NAMES.length - 1))].charAt(0)}.`;
+    }
+
+    public getRandomConsumer(id: number): Consumer {
         return {
-            id: id.toString(),
-            name: name,
+            id: id,
+            email: id + '@gmail.com',
+            phone: '',
+            dob: this.getRandomDate(new Date(1976, 0, 1), new Date()),
+            salary: id * Math.random() * 1000,
+            name: this.getRandomName(),
             progress: Math.round(Math.random() * 100).toString(),
-            color: this.config.COLORS[Math.round(Math.random() * (this.config.COLORS.length - 1))]
+            color: this.getRandomColor()
         };
     }
 

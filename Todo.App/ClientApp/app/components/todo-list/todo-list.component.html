@@ -2,45 +2,55 @@
 
 <p>This component demonstrates fetching todo items from the server.</p>
 
-<p *ngIf="!todo"><em>Loading...</em></p>
+<p *ngIf="!todos"><em>Loading...</em></p>
 
 <div class="container-fluid">
-    <form #myForm="ngForm">
-        <div class="form-group">
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <input name="newTodo" type="text" [(ngModel)]="newTodo" class="form-control" placeholder="Enter Todo item..." />
-            </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <button class="btn btn-success" (click)="newTodoItem()" [disabled]="newTodo && newTodo.length ? '' : 'disabled'">Add</button>
-            </div>
+    <div class="example-container mat-elevation-z8" style="margin-top:10px;">
+        <div class="example-header">
+            <form #myForm="ngForm">
+                <div class="form-group">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
+                        <div>
+                            <input name="newTodo" type="text" [(ngModel)]="newTodo" maxlength="100" class="form-control" placeholder="New todo item" />
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div>
+                            <button class="btn btn-success" (click)="newTodoItem()" [disabled]="newTodo && newTodo.length ? '' : 'disabled'">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+            <mat-table #table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="isComplete">
+                    <mat-header-cell *matHeaderCellDef> IsCompleted? </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <mat-checkbox name="isComplete" [(ngModel)]="row.isComplete" (click)="completeClicked(row)">
+                            {{ row.isComplete ? 'Yes' : 'No' }}
+                        </mat-checkbox>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button [disabled]="!row.isComplete" (click)="deleteItem(row.id)" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>
+                    </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+            <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
-    </form>
+    </div>
 </div>
-
-<table *ngIf="todo" class="table table-hover table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Is Completed?</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let todoItem of todo">
-            <td>{{ todoItem.id }}</td>
-            <td>
-                <span *ngIf="!todoItem.isComplete">{{ todoItem.name }}</span>
-                <span *ngIf="todoItem.isComplete" style="text-decoration: line-through">{{ todoItem.name }}</span>
-            </td>
-            <td>
-                <mat-checkbox name="isComplete" [(ngModel)]="todoItem.isComplete" (click)="completeClicked(todoItem)">
-                    {{ todoItem.isComplete ? 'Yes' : 'No' }}
-                </mat-checkbox>
-            </td>
-            <td>
-                <button [disabled]="!todoItem.isComplete" (click)="deleteItem(todoItem.id)" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete"><span class="glyphicon glyphicon-trash"></span></button>
-            </td>
-        </tr>
-    </tbody>
-</table>

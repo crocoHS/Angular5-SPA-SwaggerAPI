@@ -26,7 +26,7 @@ namespace Todo.Api.Controllers
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
-            return _context.TodoItems.ToList();
+            return _context.TodoItems.OrderByDescending(o => o.Id).ToList();
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
@@ -77,7 +77,7 @@ namespace Todo.Api.Controllers
             _context.TodoItems.Update(todo);
             _context.SaveChanges();
 
-            return new OkResult();
+            return new OkObjectResult(todo);
         }
 
         [HttpDelete("{id}")]
@@ -92,7 +92,7 @@ namespace Todo.Api.Controllers
             _context.TodoItems.Remove(todo);
             _context.SaveChanges();
 
-            return new OkResult();
+            return new OkObjectResult(todo);
         }
     }
 }

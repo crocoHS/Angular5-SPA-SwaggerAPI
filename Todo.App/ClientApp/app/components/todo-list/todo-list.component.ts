@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../../services/auth.service';
 import { TodoService } from '../../services/todo.service';
@@ -10,7 +11,13 @@ import { TodoItem } from '../../models/todo-item.type';
 })
 
 export class TodoListComponent {
-    public todo: TodoItem[];
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
+
+    displayedColumns = ['id', 'name', 'isComplete', 'delete'];
+    dataSource: MatTableDataSource<TodoItem>;
+
+    public todos: TodoItem[];
     public newTodo: string = '';
     public userId: string;
 
@@ -25,20 +32,30 @@ export class TodoListComponent {
         this.getAll();
     }
 
-    private getAll() {
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.dataSource.filter = filterValue;
+    }
+
+    getAll() {
         this.todoService.getAll()
             .subscribe(todo => {
-                this.todo = todo.filter(o => o.ownerId == this.userId);
+                this.todos = todo.filter(o => o.ownerId == this.userId);
+
+                this.dataSource = new MatTableDataSource(this.todos);
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
             });
     }
 
-    public completeClicked(todo: TodoItem): void {
+    completeClicked(todo: TodoItem): void {
         let todoItem = new TodoItem({ id: todo.id, name:todo.name, isComplete: !todo.isComplete, ownerId:todo.ownerId });
         this.todoService.update(todoItem)
             .subscribe();
     }
 
-    public newTodoItem(): void {
+    newTodoItem(): void {
         if (this.newTodo && this.newTodo.length) {
             let todoItem = new TodoItem({ name: this.newTodo, isComplete: false, ownerId: this.userId });
             this.todoService.add(todoItem)
@@ -49,7 +66,7 @@ export class TodoListComponent {
         }
     }
 
-    public deleteItem(id: number): void {
+    deleteItem(id: number): void {
         if (confirm("Are you sure you want to destroy this task forever?")) {
             this.todoService.delete(id)
                 .subscribe(() => {
