@@ -41,6 +41,7 @@
 
                     <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
                 </div>
+                <mat-progress-bar *ngIf="!dataSource" mode="indeterminate"></mat-progress-bar>
             </ng-template>
         </ngb-tab>
         <ngb-tab id="tab-forecasts" title="Forcasts">
@@ -50,7 +51,6 @@
                         <button class="btn btn-success" (click)="getWeatherForecasts()">Refresh</button>
                     </div>
                     <div>
-                        <p *ngIf="!forecasts"><em>Loading...</em></p>
                         <table *ngIf="forecasts" class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -70,6 +70,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <mat-progress-bar *ngIf="!forecasts" mode="indeterminate"></mat-progress-bar>
                 </div>
             </ng-template>
         </ngb-tab>
