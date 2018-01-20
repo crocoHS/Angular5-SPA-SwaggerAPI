@@ -7,13 +7,16 @@ import { TodoItem } from '../../models/todo-item.type';
 
 @Component({
     selector: 'todo-list',
-    templateUrl: './todo-list.component.html'
+    templateUrl: './todo-list.component.html',
+    styleUrls: ['./todo-list.component.css']
 })
 
 export class TodoListComponent {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    loading = false;
+    enableButton = true;
     displayedColumns = ['id', 'name', 'isComplete', 'delete'];
     dataSource: MatTableDataSource<TodoItem>;
 
@@ -57,11 +60,13 @@ export class TodoListComponent {
 
     newTodoItem(): void {
         if (this.newTodo && this.newTodo.length) {
+            this.toggleLoading(false);
             let todoItem = new TodoItem({ name: this.newTodo, isComplete: false, ownerId: this.userId });
             this.todoService.add(todoItem)
                 .subscribe((result) => {
                     this.getAll();
                     this.newTodo = '';
+                    this.toggleLoading(true);
                 });
         }
     }
@@ -73,5 +78,10 @@ export class TodoListComponent {
                     this.getAll();
                 });
         }
+    }
+
+    toggleLoading(isCompleted: boolean) {
+        this.enableButton = isCompleted;
+        this.loading = !isCompleted;
     }
 }

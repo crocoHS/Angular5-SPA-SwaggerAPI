@@ -2,27 +2,30 @@
 
 <p>Introducing AdventureWorks DB on Azure Portal:</p>
 
-<p *ngIf="!customers"><em>Loading...</em></p>
+<mat-progress-bar *ngIf="!customers" mode="indeterminate"></mat-progress-bar>
 
 <div *ngIf="customers">
     <div class="container-fluid">
         <form>
             <div class="form-group">
-                <div class="col-md-3 col-sm-5 col-xs-5">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <select class="form-control" id="technology" name="technology" #technology (change)="searchCustomer(technology.value, searchString.value)">
                         <option value="All">-- All --</option>
                         <option *ngFor="let t of technologyList" [value]="t.technologyName" [text]="t.technologyName"></option>
                     </select>
                 </div>
-                <div class="col-md-3 col-sm-5 col-xs-5">
+                <div class="col-md-4 col-sm-4 col-xs-4">
                     <input id="searchString" type="text" (keyup)="searchCustomer(technology.value, $event.target.value)" class="form-control" placeholder="Search" #searchString name="searchString" />
                 </div>
-                <div class="col-md-6 col-sm-2 col-xs-2">
-                    <button class="btn btn-success" type="submit" (click)="searchCustomer(technology.value, searchString.value)">Search</button>
+                <div class="col-md-3 col-sm-2 col-xs-3">
+                    <button class="btn btn-default" type="submit" (click)="searchCustomer(technology.value, searchString.value)">Search</button>
+                </div>
+                <div class="col-md-2 col-sm-3 col-xs-2">
+                    <button class="btn btn-success" [routerLink]="['/customer/new']">Add</button>
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h5 *ngIf="customers && customers.length == 0" class="text-muted">No customers found.</h5>
+                <h5 *ngIf="customers && customers.length == 0" class="text-muted">No results.</h5>
             </div>
         </form>
     </div>
@@ -57,4 +60,3 @@
         </tr>
     </tbody>
 </table>
-<button class="btn btn-success" [routerLink]="['/customer/new']">Create new</button>

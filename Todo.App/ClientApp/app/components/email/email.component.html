@@ -43,6 +43,8 @@
             <mat-slide-toggle id="useWebHook" name="useWebHook" [(ngModel)]="useWebHook">Send with Azure FunctionApp</mat-slide-toggle>
         </div>
         <button [disabled]="!myForm.form.valid || !enableButton" class="btn btn-success" (click)="sendEmail()">Send</button>
-        <img *ngIf="loading" src="../../../../wwwroot/dist/assets/loading.gif" id="loading" alt="loading" />
+        <div style="margin-top:15px;">
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        </div>
     </form>
 </div>

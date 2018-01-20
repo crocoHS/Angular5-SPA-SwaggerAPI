@@ -9,7 +9,8 @@ import { MatPaginator, MatSort, MatTableDataSource, Sort } from '@angular/materi
 
 @Component({
     selector: "fetchdata",
-    templateUrl: "./fetchdata.component.html"
+    templateUrl: "./fetchdata.component.html",
+    styleUrls: ['./fetchdata.component.css']
 })
 
 export class FetchDataComponent implements OnInit {
@@ -30,10 +31,10 @@ export class FetchDataComponent implements OnInit {
     }
 
     beforeChange($event: NgbTabChangeEvent) {
-        if ($event.nextId === 'tab-consumers' && !this.dataSource) {
+        if ($event.nextId === 'tab-consumers') {
             this.getConsumersAsync();
         }
-        else if ($event.nextId === 'tab-forecasts' && !this.forecasts) {
+        else if ($event.nextId === 'tab-forecasts') {
             this.getWeatherForecasts();
         }
     };

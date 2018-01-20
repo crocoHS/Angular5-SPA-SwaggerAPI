@@ -1,5 +1,4 @@
 <h1>Fetch Data</h1>
-<p>This component demonstrates fetching data from: <a href="http://jsonplaceholder.typicode.com/users/" target="_blank">http://jsonplaceholder.typicode.com/users/</a></p>
 
 <div class="container-fluid">
     <ngb-tabset (tabChange)="beforeChange($event)">
@@ -7,6 +6,7 @@
             <ng-template ngbTabContent>
                 <div>
                     <button class="btn btn-success" (click)="getConsumersAsync()">Refresh</button>
+                    <a style="margin-left:10px;" href="http://jsonplaceholder.typicode.com/users/" target="_blank">http://jsonplaceholder.typicode.com/users/</a>
                 </div>
                 <div class="example-container mat-elevation-z8">
                     <div class="example-header">

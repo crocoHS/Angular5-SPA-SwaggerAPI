@@ -25,9 +25,7 @@ export class EmailComponent {
     }
 
     public sendEmail() {
-        this.enableButton = false;
-        this.loading = true;
-
+        this.toggleLoading(false);
         this.useWebHook ?
             this.sendEmailWebhook() :
             this.sendEmailMessage();
@@ -38,7 +36,7 @@ export class EmailComponent {
             .catch(this.handleError())
             .subscribe((result: string) => {
                 this.service.openSnackBar('Your message has been sent!', 'Success');
-                this.stopLoading();
+                this.toggleLoading(true);
             });
     }
 
@@ -48,18 +46,17 @@ export class EmailComponent {
             .subscribe((result: string) => {
                 console.log(result);
                 this.service.openSnackBar('Your message has been sent by Azure FunctionApp', 'Success');
-                this.stopLoading();
+                this.toggleLoading(true);
                 // this.router.navigate(['home']).then(() => { this.service.openSnackBar('Your message has been sent by Azure FunctionApp', 'Success') });
             });
     }
 
     handleError() {
-        return () => Observable.throw(this.stopLoading());
+        return () => Observable.throw(this.toggleLoading(true));
     }
 
-    stopLoading() {
-        this.loading = false;
-        this.enableButton = true;
+    toggleLoading(isCompleted: boolean) {
+        this.enableButton = isCompleted;
+        this.loading = !isCompleted;
     }
-
 }
