@@ -4,7 +4,7 @@
 
 <div *ngIf="customers">
     <div class="container-fluid">
-        <form>
+        <form #customerListForm="ngForm">
             <div class="form-group">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                     <select class="form-control" id="technology" name="technology" #technology (change)="searchCustomer(technology.value, searchString.value)">
@@ -16,10 +16,10 @@
                     <input id="searchString" type="text" (keyup)="searchCustomer(technology.value, $event.target.value)" class="form-control" placeholder="Search" #searchString name="searchString" />
                 </div>
                 <div class="col-md-3 col-sm-2 col-xs-3">
-                    <button class="btn btn-default" type="submit" (click)="searchCustomer(technology.value, searchString.value)">Search</button>
+                    <button type="reset" class="btn btn-default" (click)="getCustomers()">Clear</button>
                 </div>
                 <div class="col-md-2 col-sm-3 col-xs-2">
-                    <button class="btn btn-success" [routerLink]="['/customer/new']">Add</button>
+                    <button type="button" class="btn btn-success" [routerLink]="['/customer/new']">Add</button>
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
