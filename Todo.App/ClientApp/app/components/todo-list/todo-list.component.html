@@ -2,8 +2,6 @@
 
 <p>This component demonstrates fetching todo items from the server.</p>
 
-<mat-progress-bar *ngIf="!todos" mode="indeterminate"></mat-progress-bar>
-
 <div class="container-fluid">
     <div class="example-container mat-elevation-z8" style="margin-top:10px;">
         <div class="example-header">
@@ -54,4 +52,5 @@
             <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
     </div>
+    <mat-progress-bar *ngIf="!todos" mode="indeterminate"></mat-progress-bar>
 </div>

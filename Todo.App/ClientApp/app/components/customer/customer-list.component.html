@@ -2,8 +2,6 @@
 
 <p>Introducing AdventureWorks DB on Azure Portal:</p>
 
-<mat-progress-bar *ngIf="!customers" mode="indeterminate"></mat-progress-bar>
-
 <div *ngIf="customers">
     <div class="container-fluid">
         <form>
@@ -60,3 +58,4 @@
         </tr>
     </tbody>
 </table>
+<mat-progress-bar *ngIf="!customers" mode="indeterminate"></mat-progress-bar>
