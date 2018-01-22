@@ -14,7 +14,7 @@
         <tr *ngFor="let transaction of accountTransactions">
             <td>{{ transaction.transactionDate | date}}</td>
             <td>{{ transaction.description }}</td>
-            <td class="text-right">{{ transaction.amount | currency:"USD":true:"1.2-2"}}</td>
+            <td class="text-right">{{ transaction.amount | currency:"USD":"symbol":"1.2-2"}}</td>
         </tr>
     </tbody>
 </table>

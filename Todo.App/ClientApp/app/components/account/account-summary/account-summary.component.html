@@ -6,7 +6,7 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6 text-right">
             <button class="btn btn-danger" (click)="deleteAccount($event); false;">Delete</button>
-            <h3>{{ account.balance | currency:"USD":true:"1.2-2" }}</h3>
+            <h3>{{ account.balance | currency:"USD":"symbol":"1.2-2" }}</h3>
             <span>Available Balance</span>
         </div>
     </div>
