@@ -1,5 +1,6 @@
 ﻿import { Component, Input, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 import { GlobalService } from '../../services/global.service';
 import { CustomerService } from '../../services/customer.service';
 import { AuthService } from '../../services/auth.service';
@@ -18,12 +19,13 @@ export class CustomerComponent implements OnInit {
     public customer: Customer = new Customer({
         ownerId: this.authService.getUserId(),
         gender: "M",
-        isActive: true
+        isActive: true,
+        registrationDate: new Date()
     });
-    public selectedTechnologies: string[] = [];
-    public technologyList: string[];
-    public customerId: string;
-    public isNew: boolean = false;
+    technologyList: Technology[];
+    customerTechnology = new FormControl();
+    selectedTechnologies: string[] = [];
+    isNew: boolean = false;
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -36,13 +38,13 @@ export class CustomerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.customerId = this.activatedRoute.snapshot.params['id'] as string;
-        if (this.customerId == 'new') {
+        let customerId = this.activatedRoute.snapshot.params['id'] as string;
+        if (customerId == 'new') {
             this.isNew = true;
             this.getTechnologyList();
         }
         else {
-            this.getCustomer(parseInt(this.customerId));
+            this.getCustomer(parseInt(customerId));
         }
     }
 
@@ -50,7 +52,6 @@ export class CustomerComponent implements OnInit {
         this.customerService.get(id)
             .subscribe(customer => {
                 this.customer = customer;
-                this.selectedTechnologies = this.customer.technologyList.map(t => t.technologyName);
                 this.getTechnologyList();
             });
     }
@@ -58,12 +59,26 @@ export class CustomerComponent implements OnInit {
     private getTechnologyList() {
         this.customerService.getTechnologyList()
             .subscribe(technologyList => {
-                this.technologyList = technologyList.map(t => t.technologyName);
+                this.technologyList = technologyList;
+                this.selectedTechnologies = this.customer.technologyList && this.customer.technologyList.map(t => t.technologyName);
+                this.customerTechnology.setValue(this.getSelectedTechnologies());
             });
     }
 
+    private getSelectedTechnologies() {
+        let technologies: Technology[] = [];
+        if (!this.selectedTechnologies) return technologies;
+
+        this.technologyList.map(t => {
+            if (this.selectedTechnologies.indexOf(t.technologyName) != -1) {
+                technologies.push(t);
+            }
+        });
+        return technologies;
+    }
+
     public addCustomer() {
-        this.customer.technologyList = this.getCustomerTechnologies();
+        this.customer.technologyList = this.customerTechnology.value ? this.customerTechnology.value : [];
         this.customerService.add(this.customer)
             .subscribe(() => {
                 this.router.navigate(["customer"]);
@@ -72,25 +87,11 @@ export class CustomerComponent implements OnInit {
     }
 
     public updateCustomer() {
-        this.customer.technologyList = this.getCustomerTechnologies();
+        this.customer.technologyList = this.customerTechnology.value ? this.customerTechnology.value : [];
         this.customerService.update(this.customer)
             .subscribe(() => {
                 this.router.navigate(['customer']);
                 this.toastr.success('Customer has been updated successfully');
             });
-    }
-
-    public getCustomerTechnologies() {
-        let technologies: Technology[] = [];
-        this.customerService.getTechnologyList()
-            .subscribe(technologyList => {
-                technologyList.map(t => {
-                    if (this.selectedTechnologies.indexOf(t.technologyName) != -1) {
-                        technologies.push(new Technology({ technologyId: t.technologyId, technologyName: t.technologyName }));
-                    }
-                });
-            });
-
-        return technologies;
     }
 }

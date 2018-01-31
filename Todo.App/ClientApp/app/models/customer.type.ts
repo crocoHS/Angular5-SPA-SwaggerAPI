@@ -26,7 +26,7 @@ export class Customer {
             email?: string,
             gender?: string,
             registrationDate?: Date,
-            technologies?: string[],
+            technologies?: Technology[],
             isActive?: boolean
         }) {
         if (fields) {
