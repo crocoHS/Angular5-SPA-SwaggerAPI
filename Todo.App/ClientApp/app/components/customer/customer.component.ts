@@ -48,7 +48,7 @@ export class CustomerComponent implements OnInit {
         }
     }
 
-    private getCustomer(id: number) {
+    getCustomer(id: number) {
         this.customerService.get(id)
             .subscribe(customer => {
                 this.customer = customer;
@@ -56,7 +56,7 @@ export class CustomerComponent implements OnInit {
             });
     }
 
-    private getTechnologyList() {
+    getTechnologyList() {
         this.customerService.getTechnologyList()
             .subscribe(technologyList => {
                 this.technologyList = technologyList;
@@ -65,7 +65,7 @@ export class CustomerComponent implements OnInit {
             });
     }
 
-    private getSelectedTechnologies() {
+    getSelectedTechnologies() {
         let technologies: Technology[] = [];
         if (!this.selectedTechnologies) return technologies;
 
@@ -77,7 +77,7 @@ export class CustomerComponent implements OnInit {
         return technologies;
     }
 
-    public addCustomer() {
+    addCustomer() {
         this.customer.technologyList = this.customerTechnology.value ? this.customerTechnology.value : [];
         this.customerService.add(this.customer)
             .subscribe(() => {
@@ -86,7 +86,7 @@ export class CustomerComponent implements OnInit {
             });
     }
 
-    public updateCustomer() {
+    updateCustomer() {
         this.customer.technologyList = this.customerTechnology.value ? this.customerTechnology.value : [];
         this.customerService.update(this.customer)
             .subscribe(() => {
