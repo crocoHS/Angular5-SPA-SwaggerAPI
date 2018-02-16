@@ -106,7 +106,10 @@ export class CustomerListComponent implements OnInit {
         }
     }
 
-    isOwner(ownerId: string):boolean {
+    isOwner(ownerId: string): boolean {
+        if (this.authService.isAdmin())
+            return true;
+
         return this.authService.getUserId() == ownerId;
     }
 }

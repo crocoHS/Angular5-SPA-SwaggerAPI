@@ -43,7 +43,7 @@
     <tbody>
         <tr *ngFor="let customer of customers">
             <td>
-                <button [disabled]="!isOwner(customer.ownerId)" [routerLink]="['/customer', customer.id, 'account']" type="button" class="btn btn-link">{{ customer.fullName }}</button>
+                <button [routerLink]="['/customer', customer.id, 'account']" type="button" class="btn btn-link">{{ customer.fullName }}</button>
             </td>
             <td>{{ customer.email }}</td>
             <td>{{ getTechnologyNames(customer.technologyList) }}</td>
