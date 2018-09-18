@@ -30,7 +30,7 @@ namespace Todo.FunctionApp.SendEmail
         [FunctionName("SendEmailWebhook")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]HttpRequest req, TraceWriter log)
         {
-            log.Info($"SendEmail Webhook was triggered!");
+            log.Info($"SendEmail Webhook is triggered!");
 
             string jsonContent = new StreamReader(req.Body).ReadToEnd();
             dynamic data = JsonConvert.DeserializeObject(jsonContent);
