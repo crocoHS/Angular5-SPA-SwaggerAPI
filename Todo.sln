@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.FunctionApp.CsvFilePro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.App", "Todo.App\Todo.App.csproj", "{C3C36F69-EE2D-4EB7-869D-AA566AFDCC15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.FunctionApp.SendEmailWebhook", "Todo.FunctionApp.SendEmailWebhook\Todo.FunctionApp.SendEmailWebhook.csproj", "{948706D8-5564-4BB5-85D3-17A1BB55EF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.FunctionApp.SendEmail", "Todo.FunctionApp.SendEmailWebhook\Todo.FunctionApp.SendEmail.csproj", "{948706D8-5564-4BB5-85D3-17A1BB55EF5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

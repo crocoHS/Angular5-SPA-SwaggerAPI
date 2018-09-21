@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp.SendEmail
 {
     public static class SendGridEmail
     {

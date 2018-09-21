@@ -5,6 +5,6 @@
     "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "APPINSIGHTS_INSTRUMENTATIONKEY": "286ef683-f9e4-4bda-b81f-d7fe427123a1",
-    "SENDGRID_APIKEY": "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"
+    "SENDGRID_APIKEY": "CANNOT_BE_SAVED_IN_GITHUB"
   }
 }
