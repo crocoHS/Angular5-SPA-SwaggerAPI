@@ -1,12 +1,10 @@
 {
-    "IsEncrypted": false,
+  "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "APPINSIGHTS_INSTRUMENTATIONKEY": "286ef683-f9e4-4bda-b81f-d7fe427123a1",
-    "GMAIL_CREDENTIALUSERNAME": "CredentialUsername@Gmail.com",
-    "GMAIL_CREDENTIALPASSWORD": "vgsonmvougsjjfvv",
-    "GMAIL_HOST": "smtp.gmail.com",
-    "GMAIL_PORT": "587"
+    "SENDGRID_APIKEY": "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"
   }
 }
