@@ -16,11 +16,11 @@ namespace Todo.FunctionApp.SendEmail
 {
     public static class SendGridEmail
     {
-        static readonly string SendGridApiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
+        static readonly string SendGridApiKey = "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"; // Environment.GetEnvironmentVariable("SendGrid:ApiKey");
 
         public static TelemetryClient telemetry = new TelemetryClient()
         {
-            InstrumentationKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY")
+            InstrumentationKey = "286ef683-f9e4-4bda-b81f-d7fe427123a1" // Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY")
         };
 
         [FunctionName("Send")]
@@ -36,21 +36,21 @@ namespace Todo.FunctionApp.SendEmail
                 return new BadRequestObjectResult("Please pass fromEmail and toEmail in the request body");
             }
 
+            string templateId = data.templateId.Value;
             string fromEmail = data.fromEmail.Value;
             string toEmail = data.toEmail.Value;
-            string subject = data.subject.Value;
-            string body = data.body.Value;
-            bool isImportantEmail = bool.Parse(data.isImportant.Value.ToString());
-            bool isBodyHtml = bool.Parse(data.isBodyHtml.Value.ToString());
+            string toName = data.CustomerId.Value;
 
             var message = new SendGridMessage
             {
                 From = new EmailAddress(fromEmail),
-                Subject = subject,
-                Personalizations = new List<Personalization> {
-                    new Personalization { Tos = new List<EmailAddress> { new EmailAddress(toEmail) } }
-                },
-                HtmlContent = $"{body}"
+                TemplateId = templateId,
+                Personalizations = new List<SendGrid.Helpers.Mail.Personalization> {
+                    new Personalization {
+                        Tos = new List<EmailAddress> { new EmailAddress(toEmail, toName) },
+                        TemplateData = data
+                    }
+                }
             };
 
             var client = new SendGridClient(SendGridApiKey);
