@@ -16,7 +16,7 @@ namespace Todo.FunctionApp.SendEmail
 {
     public static class SendGridEmail
     {
-        static readonly string SendGridApiKey = "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"; // Environment.GetEnvironmentVariable("SendGrid:ApiKey");
+        static readonly string SendGridApiKey = ""; // Environment.GetEnvironmentVariable("SendGrid:ApiKey");
 
         public static TelemetryClient telemetry = new TelemetryClient()
         {
