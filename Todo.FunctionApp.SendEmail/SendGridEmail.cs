@@ -16,11 +16,11 @@ namespace Todo.FunctionApp.SendEmail
 {
     public static class SendGridEmail
     {
-        static readonly string SendGridApiKey = ""; // Environment.GetEnvironmentVariable("SendGrid:ApiKey");
+        static readonly string InstrumentationKey = Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY");
+        static readonly string SendGridApiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY");
 
-        public static TelemetryClient telemetry = new TelemetryClient()
-        {
-            InstrumentationKey = "286ef683-f9e4-4bda-b81f-d7fe427123a1" // Environment.GetEnvironmentVariable("APPINSIGHTS_INSTRUMENTATIONKEY")
+        public static TelemetryClient telemetry = new TelemetryClient() {
+            InstrumentationKey = InstrumentationKey
         };
 
         [FunctionName("Send")]
@@ -36,14 +36,19 @@ namespace Todo.FunctionApp.SendEmail
                 return new BadRequestObjectResult("Please pass fromEmail and toEmail in the request body");
             }
 
+            if (data.templateId == null)
+            {
+                return new BadRequestObjectResult("Please pass templateId in the request body");
+            }
+
             string templateId = data.templateId.Value;
             string fromEmail = data.fromEmail.Value;
+            string fromName = data.fromName.Value;
             string toEmail = data.toEmail.Value;
-            string toName = data.CustomerId.Value;
+            string toName = data.customerId.Value;
 
-            var message = new SendGridMessage
-            {
-                From = new EmailAddress(fromEmail),
+            var message = new SendGridMessage {
+                From = new EmailAddress(fromEmail, fromName),
                 TemplateId = templateId,
                 Personalizations = new List<SendGrid.Helpers.Mail.Personalization> {
                     new Personalization {
