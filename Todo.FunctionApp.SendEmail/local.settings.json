@@ -1,8 +1,0 @@
-{
-  "IsEncrypted": false,
-  "Values": {
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "APPINSIGHTS_INSTRUMENTATIONKEY": "286ef683-f9e4-4bda-b81f-d7fe427123a1",
-    "SENDGRID_APIKEY": "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"
-  }
-}
