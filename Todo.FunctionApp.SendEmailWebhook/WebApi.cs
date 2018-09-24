@@ -1,4 +1,4 @@
-using Microsoft.ApplicationInsights;
+﻿using Microsoft.ApplicationInsights;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -12,7 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Todo.Model;
 
-namespace Todo.FunctionApp.PostTodo
+namespace Todo.FunctionApp.SendEmailWebhook
 {
     public static class WebApi
     {

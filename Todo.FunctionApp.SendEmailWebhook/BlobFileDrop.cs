@@ -1,17 +1,16 @@
-using Microsoft.Azure.WebJobs;
+﻿using Microsoft.Azure.WebJobs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Todo.FunctionApp.CsvFileProcess;
 using Todo.Model;
 using Todo.Repository;
 
-namespace Todo.FunctionApp.FileProcess
+namespace Todo.FunctionApp.SendEmailWebhook
 {
-    public static class WebApi
+    public static class BlobFileDrop
     {
         [FunctionName("CsvFileProcess")]
         public static async Task Run([BlobTrigger("import/{name}", Connection = "AzureWebJobsStorage")]Stream myBlob, string name, ILogger log)
