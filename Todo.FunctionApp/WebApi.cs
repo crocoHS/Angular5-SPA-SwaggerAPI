@@ -12,7 +12,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Todo.Model;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp
 {
     public static class WebApi
     {
@@ -39,12 +39,12 @@ namespace Todo.FunctionApp.SendEmailWebhook
             var timer = Stopwatch.StartNew();
             using (var ctx = new TodoContext(options))
             {
-                telemetry.TrackDependency("SQLConnect", "Context", startTime, timer.Elapsed, true);
+                telemetry.TrackDependency("SQL", "Connect", "Context", startTime, timer.Elapsed, true);
                 startTime = DateTime.UtcNow;
                 timer.Restart();
                 await ctx.TodoItems.AddAsync(data);
                 await ctx.SaveChangesAsync();
-                telemetry.TrackDependency("SQLInsert", "Insert", startTime, timer.Elapsed, true);
+                telemetry.TrackDependency("SQL", "Insert", "Insert", startTime, timer.Elapsed, true);
 
                 return new NoContentResult();
             }

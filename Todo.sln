@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.UnitTest", "Todo.UnitT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.App", "Todo.App\Todo.App.csproj", "{C3C36F69-EE2D-4EB7-869D-AA566AFDCC15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.FunctionApp.SendEmailWebhook", "Todo.FunctionApp.SendEmailWebhook\Todo.FunctionApp.SendEmailWebhook.csproj", "{0D8666D9-2F77-4445-896E-0ACBB7ACB2DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.FunctionApp", "Todo.FunctionApp\Todo.FunctionApp.csproj", "{9B860B42-BFB8-4F78-8C97-5DA91D51723C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{C3C36F69-EE2D-4EB7-869D-AA566AFDCC15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3C36F69-EE2D-4EB7-869D-AA566AFDCC15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3C36F69-EE2D-4EB7-869D-AA566AFDCC15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D8666D9-2F77-4445-896E-0ACBB7ACB2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D8666D9-2F77-4445-896E-0ACBB7ACB2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D8666D9-2F77-4445-896E-0ACBB7ACB2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D8666D9-2F77-4445-896E-0ACBB7ACB2DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B860B42-BFB8-4F78-8C97-5DA91D51723C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B860B42-BFB8-4F78-8C97-5DA91D51723C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B860B42-BFB8-4F78-8C97-5DA91D51723C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B860B42-BFB8-4F78-8C97-5DA91D51723C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

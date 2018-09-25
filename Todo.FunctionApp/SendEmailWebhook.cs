@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp
 {
     public static class SendEmailWebhook
     {
@@ -60,7 +60,7 @@ namespace Todo.FunctionApp.SendEmailWebhook
                 var timer = Stopwatch.StartNew();
 
                 client.SendEmailAsync(message);
-                telemetry.TrackDependency("SendEmailWebhook", "SendGrid", startTime, timer.Elapsed, true);
+                telemetry.TrackDependency("SendGrid", "EmailWebhook", "Send", startTime, timer.Elapsed, true);
                 log.LogInformation("Email successfully sent");
             }
             catch (Exception ex)

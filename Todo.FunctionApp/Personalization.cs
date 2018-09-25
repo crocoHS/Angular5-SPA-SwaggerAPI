@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp
 {
     public class Personalization : SendGrid.Helpers.Mail.Personalization
     {

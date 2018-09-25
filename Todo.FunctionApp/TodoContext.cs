@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using Todo.Model;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp
 {
     public class TodoContext : DbContext
     {

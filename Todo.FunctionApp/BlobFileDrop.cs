@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Todo.Model;
 using Todo.Repository;
 
-namespace Todo.FunctionApp.SendEmailWebhook
+namespace Todo.FunctionApp
 {
     public static class BlobFileDrop
     {
