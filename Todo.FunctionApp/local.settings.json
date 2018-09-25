@@ -7,6 +7,7 @@
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
-    "APPINSIGHTS_INSTRUMENTATIONKEY": "286ef683-f9e4-4bda-b81f-d7fe427123a1"
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "286ef683-f9e4-4bda-b81f-d7fe427123a1",
+    "TODO_OWNER_ID": "117679367306256560152"
   }
 }

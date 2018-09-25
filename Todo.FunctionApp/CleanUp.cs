@@ -9,9 +9,11 @@ namespace Todo.FunctionApp
 {
     public static class CleanUp
     {
+        static readonly string OwnerId = Environment.GetEnvironmentVariable("TODO_OWNER_ID");
+
         // 0 */2 * * * *
         [FunctionName("CleanUp")]
-        public static async Task Run([TimerTrigger("0 10 * * *")]TimerInfo myTimer, ILogger log)
+        public static async Task Run([TimerTrigger("0 */1 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogDebug($"CleanUp Timer trigger function executed at: {DateTime.Now}");
 
@@ -19,10 +21,10 @@ namespace Todo.FunctionApp
 
             using (var _context = new TodoContext(options))
             {
-                string ownerId = "117679367306256560152";
-                await _context.Database.ExecuteSqlCommandAsync("DELETE FROM TodoItem WHERE IsComplete = 1 AND OwnerId = @OwnerId", new SqlParameter("@OwnerId", ownerId));
+                await _context.Database.ExecuteSqlCommandAsync("DELETE FROM TodoItem WHERE IsComplete = 1 AND OwnerId = @OwnerId", new SqlParameter("@OwnerId", OwnerId));
             }
 
+            log.LogDebug($"OwnerId {OwnerId} - Completed Todo Items have been deleted.");
             log.LogDebug($"CleanUp Timer trigger function finished at: {DateTime.Now}");
         }
     }
