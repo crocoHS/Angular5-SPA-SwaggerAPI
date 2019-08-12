@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Todo.Model;
 using Todo.Repository;
 
 namespace Todo.FunctionApp
